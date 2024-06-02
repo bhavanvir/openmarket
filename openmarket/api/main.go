@@ -58,6 +58,11 @@ func constructRequest(id string) string {
 	req.Header.Set("Origin", "https://www.facebook.com")
 	req.Header.Set("Connection", "keep-alive")
 	req.Header.Set("Referer", "https://www.facebook.com/marketplace/?ref=app_tab")
+	req.Header.Set("Sec-Fetch-Dest", "empty")
+	req.Header.Set("Sec-Fetch-Mode", "cors")
+	req.Header.Set("Sec-Fetch-Site", "same-origin")
+	req.Header.Set("Priority", "u=1")
+	req.Header.Set("TE", "trailers")
 
 	resp, err := client.Do(req)
 	if err != nil {
