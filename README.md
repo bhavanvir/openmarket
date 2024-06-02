@@ -104,7 +104,7 @@ curl -X POST https://your-api-gateway-url/Prod/l/{id} -H "Content-Type: applicat
 ### Example Postman Request
 
 1. Open Postman and create a new `POST` request.
-2. Enter the API URL: `https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/l/{id}`
+2. Enter the API URL: `https://your-api-gateway-url/Prod/l/{id}/Prod/l/{id}`
 3. In the `Body` tab, select `raw` and set the type to `JSON`.
 4. Paste the JSON body:
 
