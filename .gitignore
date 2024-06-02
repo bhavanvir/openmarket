@@ -26,4 +26,4 @@ go.work.sum
 *.aws-sam
 
 # Environment variables files
-.env*
+.env.json
