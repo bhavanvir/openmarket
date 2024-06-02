@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  marketscrape-api
+
+  Sample SAM Template for marketscrape-api
+
+Globals:
+  Function:
+    Timeout: 5
+    MemorySize: 128
+
+Resources:
+  MarketscrapeFunction:
+    Type: AWS::Serverless::Function
+    Metadata:
+      BuildMethod: go1.x
+    Properties:
+      CodeUri: api/
+      Handler: bootstrap
+      Runtime: provided.al2023
+      Architectures:
+        - arm64
+      Events:
+        CatchAll:
+          Type: Api
+          Properties:
+            Path: /l/{id}
+            Method: POST
+      Environment:
+        Variables:
+          PARAM1: VALUE
+
+Outputs:
+  MarketscrapeAPI:
+    Description: "API Gateway endpoint URL for Prod environment for Marketscrape Function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/l/{id}"
+  MarketscrapeFunction:
+    Description: "Marketscrape Lambda Function ARN"
+    Value: !GetAtt MarketscrapeFunction.Arn
+  MarketscrapeFunctionIamRole:
+    Description: "Implicit IAM Role created for Marketscrape function"
+    Value: !GetAtt MarketscrapeFunctionRole.Arn
