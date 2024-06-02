@@ -65,6 +65,8 @@ Once deployed, an API Gateway URL will be provided for interacting with the Grap
 
 To interact with the API, use tools like `curl` or `Postman`. Provide the `id` of the listing you want to retrieve, which can be found in the URL of the listing on Facebook Marketplace.
 
+https://github.com/bhavanvir/openmarket/assets/20825496/8cfa4e82-a23b-4a7d-aaae-3387eee9b128
+
 ### Making Requests
 
 Send a `POST` request to the corresponding URL with the following `JSON` body:
