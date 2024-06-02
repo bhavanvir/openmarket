@@ -7,8 +7,22 @@ Description: >
 
 Globals:
   Function:
-    Timeout: 5
+    Timeout: 10
     MemorySize: 128
+
+Parameters:
+  ProxyHost:
+    Type: String
+    Description: The host URL for your forward proxy
+    Default: ""
+  ProxyUsername:
+    Type: String
+    Description: The username for your forward proxy
+    Default: ""
+  ProxyPassword:
+    Type: String
+    Description: The password for your forward proxy
+    Default: ""
 
 Resources:
   MarketscrapeFunction:
@@ -29,7 +43,9 @@ Resources:
             Method: POST
       Environment:
         Variables:
-          PARAM1: VALUE
+          PROXY_HOST: !Ref ProxyHost
+          PROXY_USERNAME: !Ref ProxyUsername
+          PROXY_PASSWORD: !Ref ProxyPassword
 
 Outputs:
   MarketscrapeAPI:
