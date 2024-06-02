@@ -1,12 +1,11 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
 Description: >
-  marketscrape-api
-
-  Sample SAM Template for marketscrape-api
+  SAM template for deploying the OpenMarket API
 
 Globals:
   Function:
+    # Timeout needs to be higher than the default 3 seconds
     Timeout: 10
     MemorySize: 128
 
@@ -25,7 +24,7 @@ Parameters:
     Default: ""
 
 Resources:
-  MarketscrapeFunction:
+  OpenMarketFunction:
     Type: AWS::Serverless::Function
     Metadata:
       BuildMethod: go1.x
@@ -34,6 +33,7 @@ Resources:
       Handler: bootstrap
       Runtime: provided.al2023
       Architectures:
+        # If testing locally on an M-series Mac, use arm64 architecture
         - arm64
       Events:
         CatchAll:
@@ -48,12 +48,12 @@ Resources:
           PROXY_PASSWORD: !Ref ProxyPassword
 
 Outputs:
-  MarketscrapeAPI:
-    Description: "API Gateway endpoint URL for Prod environment for Marketscrape Function"
+  OpenMarketAPI:
+    Description: "API Gateway endpoint URL for Prod environment for OpenMarket Function"
     Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/l/{id}"
-  MarketscrapeFunction:
-    Description: "Marketscrape Lambda Function ARN"
-    Value: !GetAtt MarketscrapeFunction.Arn
-  MarketscrapeFunctionIamRole:
-    Description: "Implicit IAM Role created for Marketscrape function"
-    Value: !GetAtt MarketscrapeFunctionRole.Arn
+  OpenMarketFunction:
+    Description: "OpenMarket Lambda Function ARN"
+    Value: !GetAtt OpenMarketFunction.Arn
+  OpenMarketFunctionIamRole:
+    Description: "Implicit IAM Role created for OpenMarket function"
+    Value: !GetAtt OpenMarketFunctionRole.Arn

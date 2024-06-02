@@ -25,5 +25,5 @@ go.work.sum
 # AWS SAM deployment artifacts
 *.aws-sam
 
-# Environment variables file
-env.json
+# Environment variables files
+.env*
